@@ -1,22 +1,18 @@
 import { ISample } from "../models"
+import { ISampleRepository } from "../models/sample.model"
 
-class SampleRepository {
-    insert() {
-        console.warn("Method not implemented");
-
+class SampleRepository implements ISampleRepository {
+    insert(): Promise<ISample> {
+        return new Promise((resolve: (cb: ISample) => void, reject) => {})
     }
-    remove() {
-        console.warn("Method not implemented");
-
+    remove(): Promise<ISample> {
+        return new Promise((resolve: (cb: ISample) => void, reject) => {})
     }
-    update() {
-        console.warn("Method not implemented");
-
+    update(): Promise<ISample> {
+        return new Promise((resolve: (cb: ISample) => void, reject) => {})
     }
     find(): Promise<ISample> {
-        return new Promise((resolve: (cb: ISample) => void, reject) => {
-            resolve({name: "Taha", age: 15} as ISample);
-        })
+        return new Promise((resolve: (cb: ISample) => void, reject) => {})
     }
 }
 
