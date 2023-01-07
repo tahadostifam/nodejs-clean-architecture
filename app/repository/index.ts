@@ -1,6 +1,5 @@
-import * as models from "../models";
-import makePostsRepo from "./posts.repo";
+import {SampleRepository} from "./sample.repo";
 
-const postsRepo = makePostsRepo();
+const sampleRepo = new SampleRepository();
 
-export { postsRepo };
+export { sampleRepo };

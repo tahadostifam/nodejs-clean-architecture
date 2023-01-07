@@ -1,3 +1,3 @@
-import { Post } from "./posts.model"
+import { ISample } from "./sample.model"
 
-export { Post }
+export { ISample }

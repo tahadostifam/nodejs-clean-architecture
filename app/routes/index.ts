@@ -1,8 +1,11 @@
 import express from "express"
-import postRoutes from "./post.routes"
+import SampleRoutes from "./sample.routes";
+import sampleRepo from "../repository/sample.repo";
+import initSampleRoutes from "./sample.routes";
 
 const router = express.Router();
 
-router.use(postRoutes);
+const sampleRoutes = initSampleRoutes(router)
+router.use("/sample", sampleRoutes);
 
 export default router;
