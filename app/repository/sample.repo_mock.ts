@@ -11,6 +11,7 @@ export default class SampleRepositoryMock implements ISampleRepository {
             resolve(newSample);
         })
     }
+
     find(name: string): Promise<ISample> {
         return new Promise((resolve: (sample: ISample) => void, reject) => {
             const result = this.samples.find(element => element.name === name);

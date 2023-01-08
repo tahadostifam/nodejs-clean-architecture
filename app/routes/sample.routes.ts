@@ -1,9 +1,12 @@
 import express from "express"
-import sampleRepo from "../repository/sample.repo";
 import sampleController from "../controllers/sample.controller";
+import { ISampleRepository } from "../models/sample.model";
 
-function initSampleRoutes(router: express.IRouter): express.IRouter {
-    router.get("/home", sampleController().home);
+function initSampleRoutes(sampleRepo: ISampleRepository): express.IRouter {
+    const router: express.Router = express.Router();
+
+    router.get("/list", sampleController(sampleRepo).home);
+    router.post("/add", sampleController(sampleRepo).add);
 
     return router;
 }

@@ -1,11 +1,11 @@
 import express from "express"
-import SampleRoutes from "./sample.routes";
-import sampleRepo from "../repository/sample.repo";
+import { ISampleRepository } from "../models/sample.model";
 import initSampleRoutes from "./sample.routes";
 
-const router = express.Router();
+export default function initRoutes(router: express.IRouter, sampleRepo: ISampleRepository): express.IRouter {
+    const sampleRoutes = initSampleRoutes(sampleRepo)
 
-const sampleRoutes = initSampleRoutes(router)
-router.use("/sample", sampleRoutes);
+    router.use("/sample", sampleRoutes);
 
-export default router;
+    return router;
+}

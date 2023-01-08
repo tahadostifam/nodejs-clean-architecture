@@ -1,17 +1,27 @@
+import "./index"
 import { Request, Response, NextFunction } from "express";
-import postUseCase from "../use_cases/sample.use_case"
-import sampleRepo from "../repository/sample.repo";
-import { ISample } from "../models";
+import { ISampleRepository } from "../models/sample.model";
+import SampleUseCase from "../use_cases/sample.use_case";
+import { sendError } from "../presenter/error";
+import { callUseCase } from "./index";
 
 export interface ISampleController {
     home(req: Request, res: Response, next: NextFunction): void;
+    add(req: Request, res: Response, next: NextFunction): void;
 }
 
-export default function sampleController(): ISampleController {
+export default function sampleController(sampleRepo: ISampleRepository): ISampleController {
+    const sampleUseCase = new SampleUseCase(sampleRepo);
+
     const home = (req: Request, res: Response, next: NextFunction) => {
-        postUseCase.getAll().then((cb) => res.json(cb))
-            .catch((error: Error) => next(error));
+        sampleUseCase.getAll().then((cb) => res.json(cb)).catch((error: Error) => next(error));
     }
 
-    return Object.freeze({ home });
+    const add = (req: Request, res: Response, next: NextFunction) => {
+        callUseCase(sampleUseCase.insert(req.body))
+            .then(() => res.send("added successfully"))
+            .catch((error) => sendError(res, next, error))
+    }
+
+    return Object.freeze({ home, add });
 }
