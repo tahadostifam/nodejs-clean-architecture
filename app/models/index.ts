@@ -1,3 +1,3 @@
-import { ISample } from "./sample.model"
+import { ISample, SampleModel } from "./sample.model"
 
-export { ISample }
+export { ISample, SampleModel }

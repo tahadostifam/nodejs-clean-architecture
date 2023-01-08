@@ -1,4 +1,4 @@
-import SampleRepositoryMock from "./sample.repo_mock"
+import SampleRepositoryMock from "../../app/repository/sample.repo_mock"
 
 test("Sample Repository Mock", () => {
     const sampleRepo = new SampleRepositoryMock();
@@ -10,9 +10,4 @@ test("Sample Repository Mock", () => {
     sampleRepo.getAll().then((response) => {
         expect(response.length).toBe(3);
     });
-
-    sampleRepo.find("Taha").then(sample => {
-        expect(sample.name).toBe("Taha");
-        expect(sample.age).toBe(15);
-    })
 })

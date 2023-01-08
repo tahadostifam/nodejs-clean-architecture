@@ -1,13 +1,20 @@
 import express from "express"
-import SampleRepositoryMock from "./repository/sample.repo_mock";
+import { parseConfig } from "./config";
+import getMongoDBInstance from "./database/mongodb";
+// import SampleRepository from "./repository/sample.repo_mock";
+import SampleRepository from "./repository/sample.repo";
 import initRoutes from "./routes";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 
-// Services
-const sampleRepo = new SampleRepositoryMock();
-const sampleRoutes = initRoutes(app, sampleRepo);
-// app.use("/", sampleRoutes);
+// Configs
+const configs = parseConfig(`${process.cwd()}/config/config.yml`);
+// Database
+getMongoDBInstance(configs).then((mongoClient) => {
+    // Services
+    const sampleRepo = new SampleRepository();
+    initRoutes(app, sampleRepo);
+})
 
 export default app;
