@@ -11,6 +11,7 @@ export default function getMongoDBInstance(config: IConfig) {
                 port: config.mongo.port,
                 username: config.mongo.username,
                 password: config.mongo.password,
+                database: config.mongo.database,
             })
 
             mongoose.set('strictQuery', false);

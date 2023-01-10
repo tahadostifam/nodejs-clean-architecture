@@ -5,6 +5,6 @@ http:
 mongo:
   host: 172.18.0.2
   port: 27017
-  username: root
-  password: root
-  database: db
+  username: mongo_user
+  password: mongo_user
+  database: my_db

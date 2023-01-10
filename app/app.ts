@@ -1,7 +1,6 @@
 import express from "express"
 import { parseConfig } from "./config";
 import getMongoDBInstance from "./database/mongodb";
-// import SampleRepository from "./repository/sample.repo_mock";
 import SampleRepository from "./repository/sample.repo";
 import initRoutes from "./routes";
 

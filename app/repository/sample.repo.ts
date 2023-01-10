@@ -9,7 +9,7 @@ export default class SampleRepository implements ISampleRepository {
                 age: newSample.age,
             })
 
-            obj.save().then(() => resolve(obj)).catch((reason) => reject(reason));
+            await obj.save().then(() => resolve(obj)).catch((reason) => reject(reason));
         })
     }
 
